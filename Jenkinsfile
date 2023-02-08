@@ -22,6 +22,12 @@ pipeline {
                 sh ('terraform plan') 
             }
         }
+        stage (" ec2_size") {
+            steps {
+                echo "Terraform ec2_size is --> ${ec2_size}"
+                sh ('terraform ${ec2_size}') 
+           }
+        }
         stage (" Action") {
             steps {
                 echo "Terraform action is --> ${action}"
