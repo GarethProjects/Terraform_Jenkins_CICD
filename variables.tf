@@ -16,3 +16,9 @@ variable "ec2_instance_count" {
   type        = number
   default     = 1
 }
+
+# Assign When Prompted using CLI
+variable "ec2_instance_type" {
+  description = "EC2 Instance Type"
+  type = string
+}
