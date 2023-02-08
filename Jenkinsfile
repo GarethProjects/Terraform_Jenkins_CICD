@@ -17,6 +17,12 @@ pipeline {
                 sh ('terraform validate') 
             }
         }
+        stage (" ec2_instance") {
+            steps {
+                echo "Terraform action is --> ${ec2_size}"
+                sh (${params.ec2_size})
+           }
+        }
         stage ("plan") {
             steps {
                 sh ('terraform plan') 
