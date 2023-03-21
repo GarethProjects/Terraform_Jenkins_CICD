@@ -12,7 +12,7 @@ resource "aws_instance" "my-ec2-vm" {
     sudo systemctl start httpd
     echo "<h1>Welcome to the demo using Terraform/Jenkins in us-east-2 Region</h1>" > /var/www/html/index.html
     EOF
-  vpc_security_group_ids = [aws_security_group.vpc-ssh.id, aws_security_group.vpc-web.id]
+  vpc_security_group_ids = [aws_security_group.vpc-ssh_new.id, aws_security_group.vpc-web_new.id]
   tags = {
     "Name" = "myec2vm"
   }
