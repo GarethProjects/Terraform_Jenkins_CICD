@@ -8,9 +8,9 @@ pipeline {
         stage ("Creds") {
             steps {
                 sh '''
-          aws --version
-          aws ec2 describe-instances
-        '''
+                    aws --version
+                    aws ec2 describe-instances
+                '''
             }
         }
         stage ("terraform init") {
@@ -23,14 +23,14 @@ pipeline {
                 sh ('terraform fmt')
             }
         }
-       stage ("terraform validate script") {
+        stage ("terraform validate script") {
             steps {
                 sh ('terraform validate') 
             }
         }
         stage ("plan") {
             steps {
-                sh ('terraform plan -out myplan')
+                sh ('terraform plan -var-file=myvars.tfvars -out myplan')
             }
         }
         stage ("Validate apply") {
@@ -42,10 +42,10 @@ pipeline {
                 echo "Apply command has been accepted"
             }
         }
-        stage (" Action") {
+        stage ("Action") {
             steps {
                 echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve' -var-file="tf.vars")
+                sh ('terraform ${action} -var-file=myvars.tfvars --auto-approve')
            }
         }
     }
