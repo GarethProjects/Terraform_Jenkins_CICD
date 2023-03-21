@@ -1,10 +1,16 @@
 pipeline {
     agent any
-
+    environment {
+        AWS_DEFAULT_REGION="us-east-2"
+        THE_BUTLER_SAYS_SO=credentials('aws-creds')
+    }
     stages {
-        stage('Checkout') {
+        stage ("Creds") {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/GarethProjects/Terraform_Jenkins_CICD.git']])
+                sh '''
+          aws --version
+          aws ec2 describe-instances
+        '''
             }
         }
         stage ("terraform init") {
@@ -12,26 +18,34 @@ pipeline {
                 sh ("terraform init -reconfigure") 
             }
         }
+        stage ("Terraform Format") {
+            steps {
+                sh ('terraform fmt')
+            }
+        }
        stage ("terraform validate script") {
             steps {
                 sh ('terraform validate') 
             }
         }
-        stage (" ec2_instance") {
-            steps {
-                echo "Terraform action is --> ${ec2_size}"
-                sh "${params.ec2_size}"
-           }
-        }
         stage ("plan") {
             steps {
-                sh ('terraform plan') 
+                sh ('terraform plan -out myplan')
+            }
+        }
+        stage ("Validate apply") {
+            input {
+                message "Are you sure you want to apply this plan?"
+                ok "Apply this plan."
+            }
+            steps{
+                echo "Apply command has been accepted"
             }
         }
         stage (" Action") {
             steps {
                 echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} --auto-approve') 
+                sh ('terraform ${action} --auto-approve')
            }
         }
     }
