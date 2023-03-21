@@ -48,12 +48,12 @@ pipeline {
                 echo "Apply command has been accepted"
             }
         }
-        stage ("Action step") {
-            steps {
-                echo "Terraform action is --> ${action}"
-                sh -var-file=myvars.tfvars
-           }
-        }
+//         stage ("Action step") {
+//             steps {
+//                 echo "Terraform action is --> ${action}"
+//                 sh -var-file=myvars.tfvars
+//            }
+//         }
 //         stage ("Delete Security Group") {
 //             steps {
 //                 sh 'terraform ${action} -var-file=myvars.tfvars -target=aws_instance.my-ec2-vm --auto-approve'
