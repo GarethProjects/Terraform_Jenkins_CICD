@@ -22,7 +22,7 @@
 # We do this by creating the AWS resource here.
 
 resource "aws_instance" "ec2vmfromConsole" {
-  ami           = "ami-05502a22127df2492"
+  ami           = "i-043bb25f5dff8b6b2"
   instance_type = "t2.micro"
   subnet_id     = "subnet-0dc9ce31833103bec"
   vpc_security_group_ids = ["sg-0506c8159507d6480", "sg-0506c8159507d6480"]
