@@ -25,7 +25,7 @@ resource "aws_instance" "my_ec2_instance_imported" {
   ami           = "ami-05502a22127df2492"
   instance_type = "t2.micro"
   subnet_id     = "subnet-0dc9ce31833103bec"
-  vpc_security_group_ids = ["sg-0506c8159507d6480", 'sg-0506c8159507d6480']
+  vpc_security_group_ids = ["sg-0506c8159507d6480", "sg-0506c8159507d6480"]
 }
 
 
