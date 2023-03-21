@@ -42,17 +42,17 @@ pipeline {
                 echo "Apply command has been accepted"
             }
         }
-//         stage ("Action") {
-//             steps {
-//                 echo "Terraform action is --> ${action}"
-//                 sh ('terraform ${action} -var-file=myvars.tfvars --auto-approve')
-//            }
-//         }
-        stage ("Delete Security Group") {
+        stage ("Action") {
             steps {
-                sh 'terraform ${action} -var-file=myvars.tfvars -target=aws_security_group.vpc-ssh_new --auto-approve'
-            }
+                echo "Terraform action is --> ${action}"
+                sh ('terraform ${action} -var-file=myvars.tfvars --auto-approve')
+           }
         }
+//         stage ("Delete Security Group") {
+//             steps {
+//                 sh 'terraform ${action} -var-file=myvars.tfvars -target=aws_security_group.vpc-ssh_new --auto-approve'
+//             }
+//         }
     }
 }
 
