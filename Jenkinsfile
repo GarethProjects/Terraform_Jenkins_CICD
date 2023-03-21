@@ -53,7 +53,7 @@ pipeline {
                 echo "Terraform action is --> ${action}"
                 sh ('terraform ${action} -var-file=myvars.tfvars --auto-approve')
            }
-//         }
+        }
 //         stage ("Delete Security Group") {
 //             steps {
 //                 sh 'terraform ${action} -var-file=myvars.tfvars -target=aws_instance.my-ec2-vm --auto-approve'
