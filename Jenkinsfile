@@ -33,6 +33,12 @@ pipeline {
                 sh ('terraform plan -var-file=myvars.tfvars -out myplan')
             }
         }
+        stage ("state list") {
+            steps {
+                sh ('terraform state list')
+            }
+        }
+        
         stage ("Validate apply") {
             input {
                 message "Are you sure you want to apply this plan?"
