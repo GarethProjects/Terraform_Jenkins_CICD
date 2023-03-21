@@ -48,11 +48,11 @@ pipeline {
                 echo "Apply command has been accepted"
             }
         }
-//         stage ("Action") {
-//             steps {
-//                 echo "Terraform action is --> ${action}"
-//                 sh ('terraform ${action} -var-file=myvars.tfvars --auto-approve')
-//            }
+        stage ("Action step") {
+            steps {
+                echo "Terraform action is --> ${action}"
+                sh ('terraform ${action} -var-file=myvars.tfvars --auto-approve')
+           }
 //         }
 //         stage ("Delete Security Group") {
 //             steps {
