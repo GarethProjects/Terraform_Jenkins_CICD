@@ -62,10 +62,10 @@ pipeline {
         
         stage ("Import EC2 Instance") {
             steps {
-                sh 'terraform ${action} -var-file=myvars.tfvars aws_instance. --auto-approve'
+                sh 'terraform ${action} -var-file=myvars.tfvars aws_instance.my_ec2_instance_imported i-043bb25f5dff8b6b2 --auto-approve'
             }
         }
-        stage ("state list after deletion") {
+        stage ("state list after deletion/addition") {
             steps {
                 sh ('terraform state list')
             }
