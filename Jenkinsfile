@@ -51,7 +51,7 @@ pipeline {
         stage ("Action step") {
             steps {
                 echo "Terraform action is --> ${action}"
-                sh ('terraform ${action} -var-file=myvars.tfvars --auto-approve')
+                sh -var-file=myvars.tfvars
            }
         }
 //         stage ("Delete Security Group") {
