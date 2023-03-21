@@ -50,7 +50,7 @@ pipeline {
 //         }
         stage ("Delete Security Group") {
             steps {
-                sh 'terraform destroy -var-file=myvars.tfvars -target=aws_security_group.vpc-ssh_new --auto-approve'
+                sh 'terraform ${action} -var-file=myvars.tfvars -target=aws_security_group.vpc-ssh_new --auto-approve'
             }
         }
     }
