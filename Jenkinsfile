@@ -59,7 +59,7 @@ pipeline {
                 sh 'terraform ${action} -var-file=myvars.tfvars -target=aws_instance.my-ec2-vm --auto-approve'
             }
         }
-        stage ("state list") {
+        stage ("state list after deletion") {
             steps {
                 sh ('terraform state list')
             }
