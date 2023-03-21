@@ -21,7 +21,7 @@
 # We have an EC2 instance in AWS that needs to come under Terraform control
 # We do this by creating the AWS resource here.
 
-resource "aws_instance" "ec2vmfromConsole" {
+resource "aws_instance" "myinstance" {
   ami           = "i-043bb25f5dff8b6b2"
   instance_type = "t2.micro"
   subnet_id     = "subnet-0dc9ce31833103bec"
